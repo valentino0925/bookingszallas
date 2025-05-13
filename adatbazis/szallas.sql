@@ -1,178 +1,49 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Gép: 127.0.0.1
--- Létrehozás ideje: 2025. Ápr 14. 09:36
--- Kiszolgáló verziója: 10.4.28-MariaDB
--- PHP verzió: 8.2.4
+-- Create database
+CREATE DATABASE IF NOT EXISTS travel_agency;
+USE travel_agency;
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
+-- Destinations table
+CREATE TABLE destinations (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    location VARCHAR(100),
+    subtitle VARCHAR(100),
+    price DECIMAL(10, 2) NOT NULL,
+    is_popular BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
+-- Quick search options table
+CREATE TABLE quick_search_options (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(50) NOT NULL,
+    description VARCHAR(100),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+-- User stats table
+CREATE TABLE user_stats (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    month VARCHAR(20) NOT NULL,
+    stats_data JSON,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
---
--- Adatbázis: `szallas`
---
-CREATE DATABASE IF NOT EXISTS `szallas` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `szallas`;
+-- Sample data
+INSERT INTO destinations (name, location, subtitle, price, is_popular) VALUES
+('Lejátszám', 'India', 'Kerala', 17000.00, TRUE),
+('Elfiel Tower Tour', NULL, NULL, 20000.00, TRUE),
+('Szikholnai Old City', NULL, NULL, 10000.00, TRUE),
+('Kashmir', NULL, NULL, 5000.00, TRUE);
 
--- --------------------------------------------------------
+INSERT INTO quick_search_options (title, description) VALUES
+('FIZETÉSI BEÁLÍTÁSOK', 'BEÁLÍTÁSOK'),
+('BALATON', 'NEZIÓ ÁR'),
+('DUBAI', 'SZ300HUF'),
+('MALDÍV-SZIGETEK', 'NEZIÓ ÁR'),
+('120.000HUF', 'NEZIÓ ÁR'),
+('110.000HUF', 'NEZIÓ ÁR');
 
---
--- Tábla szerkezet ehhez a táblához `felhasználó`
---
-
-CREATE TABLE `felhasználó` (
-  `felhasználó_id` int(11) NOT NULL,
-  `név` varchar(100) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `jelszó_hash` varchar(255) NOT NULL,
-  `telefonszám` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Tábla szerkezet ehhez a táblához `foglalás`
---
-
-CREATE TABLE `foglalás` (
-  `foglalás_id` int(11) NOT NULL,
-  `felhasználó_id` int(11) DEFAULT NULL,
-  `szállás_id` int(11) DEFAULT NULL,
-  `érkezés_dátuma` date DEFAULT NULL,
-  `távozás_dátuma` date DEFAULT NULL,
-  `foglalás_dátuma` timestamp NOT NULL DEFAULT current_timestamp(),
-  `státusz` enum('függőben','elfogadva','elutasítva') DEFAULT 'függőben'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Tábla szerkezet ehhez a táblához `szállás`
---
-
-CREATE TABLE `szállás` (
-  `szállás_id` int(11) NOT NULL,
-  `név` varchar(100) NOT NULL,
-  `cím` varchar(255) NOT NULL,
-  `város` varchar(100) DEFAULT NULL,
-  `ország` varchar(100) DEFAULT NULL,
-  `leírás` text DEFAULT NULL,
-  `ár_éjszakánként` decimal(10,2) NOT NULL,
-  `max_fő` int(11) DEFAULT NULL,
-  `tulajdonos_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Tábla szerkezet ehhez a táblához `vélemény`
---
-
-CREATE TABLE `vélemény` (
-  `vélemény_id` int(11) NOT NULL,
-  `felhasználó_id` int(11) DEFAULT NULL,
-  `szállás_id` int(11) DEFAULT NULL,
-  `értékelés` int(11) DEFAULT NULL CHECK (`értékelés` between 1 and 5),
-  `szöveg` text DEFAULT NULL,
-  `dátum` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Indexek a kiírt táblákhoz
---
-
---
--- A tábla indexei `felhasználó`
---
-ALTER TABLE `felhasználó`
-  ADD PRIMARY KEY (`felhasználó_id`),
-  ADD UNIQUE KEY `email` (`email`);
-
---
--- A tábla indexei `foglalás`
---
-ALTER TABLE `foglalás`
-  ADD PRIMARY KEY (`foglalás_id`),
-  ADD KEY `felhasználó_id` (`felhasználó_id`),
-  ADD KEY `szállás_id` (`szállás_id`);
-
---
--- A tábla indexei `szállás`
---
-ALTER TABLE `szállás`
-  ADD PRIMARY KEY (`szállás_id`),
-  ADD KEY `tulajdonos_id` (`tulajdonos_id`);
-
---
--- A tábla indexei `vélemény`
---
-ALTER TABLE `vélemény`
-  ADD PRIMARY KEY (`vélemény_id`),
-  ADD KEY `felhasználó_id` (`felhasználó_id`),
-  ADD KEY `szállás_id` (`szállás_id`);
-
---
--- A kiírt táblák AUTO_INCREMENT értéke
---
-
---
--- AUTO_INCREMENT a táblához `felhasználó`
---
-ALTER TABLE `felhasználó`
-  MODIFY `felhasználó_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT a táblához `foglalás`
---
-ALTER TABLE `foglalás`
-  MODIFY `foglalás_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT a táblához `szállás`
---
-ALTER TABLE `szállás`
-  MODIFY `szállás_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT a táblához `vélemény`
---
-ALTER TABLE `vélemény`
-  MODIFY `vélemény_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- Megkötések a kiírt táblákhoz
---
-
---
--- Megkötések a táblához `foglalás`
---
-ALTER TABLE `foglalás`
-  ADD CONSTRAINT `foglalás_ibfk_1` FOREIGN KEY (`felhasználó_id`) REFERENCES `felhasználó` (`felhasználó_id`),
-  ADD CONSTRAINT `foglalás_ibfk_2` FOREIGN KEY (`szállás_id`) REFERENCES `szállás` (`szállás_id`);
-
---
--- Megkötések a táblához `szállás`
---
-ALTER TABLE `szállás`
-  ADD CONSTRAINT `szállás_ibfk_1` FOREIGN KEY (`tulajdonos_id`) REFERENCES `felhasználó` (`felhasználó_id`);
-
---
--- Megkötések a táblához `vélemény`
---
-ALTER TABLE `vélemény`
-  ADD CONSTRAINT `vélemény_ibfk_1` FOREIGN KEY (`felhasználó_id`) REFERENCES `felhasználó` (`felhasználó_id`),
-  ADD CONSTRAINT `vélemény_ibfk_2` FOREIGN KEY (`szállás_id`) REFERENCES `szállás` (`szállás_id`);
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+INSERT INTO user_stats (user_id, month, stats_data) VALUES
+(1, '2023 MÁRS', '{"percentages": [9, 80, 11, 18, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47]}');
