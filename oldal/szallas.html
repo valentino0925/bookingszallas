@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="hu" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Prémium utazási foglalási platform - Exkluzív ajánlatok a Balatonról, Dubaiból, Maldív-szigetekről és egyedi élményekkel"
+    />
+    <title>Bookingszállás</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="szallas.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@animxyz/core" />
+  </head>
+  <body>
+    <!-- Accessibility Skip Link -->
+    <a href="#main-content" class="skip-link">Ugrás a tartalomra</a>
+
+    <!-- Animated Header -->
+    <header class="header xyz-in" xyz="fade down-1 duration-10">
+      <div class="header-content">
+        <button id="theme-toggle" aria-label="Téma váltása">
+          <i class="fas fa-moon"></i>
+        </button>
+        <h1 class="greeting">
+          Üdv újra, <span class="highlight">Gergő</span>!
+        </h1>
+        <div class="user-avatar" tabindex="0" aria-label="Felhasználói profil">
+          <img src="https://i.pravatar.cc/150?img=3" alt="Gergő profilképe" />
+          <div class="notification-badge">3</div>
+        </div>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <!-- Quick Search Section with Micro-interactions -->
+      <section
+        class="quick-search xyz-in"
+        xyz="fade small stagger-1 ease-out-back"
+      >
+        <h2 class="section-title">
+          <i class="fas fa-bolt"></i> Azonnali keresés
+          <span class="ai-badge">AI ajánlás</span>
+        </h2>
+        <div class="search-grid">
+          <div class="search-card" tabindex="0" data-category="payment">
+            <div class="card-icon">
+              <i class="fas fa-cog"></i>
+            </div>
+            <h3>Fizetési beállítások</h3>
+            <p>Testreszabott fizetési módok</p>
+            <div class="card-badge">Gyors</div>
+          </div>
+
+          <div
+            class="search-card featured"
+            tabindex="0"
+            data-category="balaton"
+          >
+            <div class="card-icon">
+              <i class="fas fa-umbrella-beach"></i>
+            </div>
+            <h3>Balaton 2024</h3>
+            <p>Nyári akciók • 35% kedvezmény</p>
+            <div class="card-badge">Népszerű</div>
+            <div class="price-tag">120.000HUF</div>
+          </div>
+
+          <div class="search-card" tabindex="0" data-category="dubai">
+            <div class="card-icon">
+              <i class="fas fa-building"></i>
+            </div>
+            <h3>Dubai</h3>
+            <p>Exkluzív szállodák</p>
+            <div class="price-tag">300.000HUF</div>
+          </div>
+
+          <div class="search-card" tabindex="0" data-category="maldives">
+            <div class="card-icon">
+              <i class="fas fa-water"></i>
+            </div>
+            <h3>Maldív-szigetek</h3>
+            <p>Romantikus utazások</p>
+            <div class="price-tag">450.000HUF</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- AI-Powered Recommendations -->
+      <section class="ai-recommendations">
+        <h2 class="section-title">
+          <i class="fas fa-robot"></i> AI ajánlások számodra
+          <span class="ai-badge">Gergő preferenciái alapján</span>
+        </h2>
+
+        <div class="recommendation-tabs">
+          <button class="tab-btn active" data-tab="popular">Népszerű</button>
+          <button class="tab-btn" data-tab="budget">Költségtudatos</button>
+          <button class="tab-btn" data-tab="adventure">Kaland</button>
+          <button class="tab-btn" data-tab="luxury">Luxus</button>
+        </div>
+
+        <div class="recommendation-content active" id="popular">
+          <div class="destination-card">
+            <div
+              class="card-image"
+              style="
+                background-image: url('https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+              "
+            >
+              <div class="card-overlay"></div>
+              <div class="card-badge">Best Seller</div>
+              <button class="wishlist-btn" aria-label="Kedvencekhez adás">
+                <i class="far fa-heart"></i>
+              </button>
+            </div>
+            <div class="card-details">
+              <h3>Kerala, India</h3>
+              <p class="location">
+                <i class="fas fa-map-marker-alt"></i> India
+              </p>
+              <div class="card-meta">
+                <div class="rating">
+                  <i class="fas fa-star"></i>
+                  <span>4.9</span>
+                  <span class="reviews">(128 értékelés)</span>
+                </div>
+                <div class="price">17.000HUF <span>/nap</span></div>
+              </div>
+              <button class="btn primary">Részletek</button>
+            </div>
+          </div>
+
+          <div class="destination-card">
+            <div
+              class="card-image"
+              style="
+                background-image: url('https://images.unsplash.com/photo-1431274172761-fca41d930114?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+              "
+            >
+              <div class="card-overlay"></div>
+              <button class="wishlist-btn" aria-label="Kedvencekhez adás">
+                <i class="far fa-heart"></i>
+              </button>
+            </div>
+            <div class="card-details">
+              <h3>Eiffel Torony Tour</h3>
+              <p class="location">
+                <i class="fas fa-map-marker-alt"></i> Párizs, Franciaország
+              </p>
+              <div class="card-meta">
+                <div class="rating">
+                  <i class="fas fa-star"></i>
+                  <span>4.7</span>
+                  <span class="reviews">(89 értékelés)</span>
+                </div>
+                <div class="price">20.000HUF <span>/nap</span></div>
+              </div>
+              <button class="btn primary">Részletek</button>
+            </div>
+          </div>
+
+          <div class="destination-card">
+            <div
+              class="card-image"
+              style="
+                background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+              "
+            >
+              <div class="card-overlay"></div>
+              <div class="card-badge">Last Minute</div>
+              <button class="wishlist-btn" aria-label="Kedvencekhez adás">
+                <i class="far fa-heart"></i>
+              </button>
+            </div>
+            <div class="card-details">
+              <h3>Szikholnai Old City</h3>
+              <p class="location">
+                <i class="fas fa-map-marker-alt"></i> Szikhol, Grúzia
+              </p>
+              <div class="card-meta">
+                <div class="rating">
+                  <i class="fas fa-star"></i>
+                  <span>4.8</span>
+                  <span class="reviews">(64 értékelés)</span>
+                </div>
+                <div class="price">10.000HUF <span>/nap</span></div>
+              </div>
+              <button class="btn primary">Részletek</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Personal Stats Dashboard -->
+      <section class="personal-stats">
+        <h2 class="section-title">
+          <i class="fas fa-chart-line"></i> Személyes utazási statisztikák
+        </h2>
+
+        <div class="stats-container">
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-suitcase-rolling"></i>
+            </div>
+            <div class="stat-info">
+              <h3>Összes utazás</h3>
+              <p class="stat-value">14</p>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-globe-europe"></i>
+            </div>
+            <div class="stat-info">
+              <h3>Látogatott országok</h3>
+              <p class="stat-value">7</p>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-coins"></i>
+            </div>
+            <div class="stat-info">
+              <h3>Megtakarítás (2023)</h3>
+              <p class="stat-value">120.000HUF</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="stats-chart-container">
+          <h3>Utazási aktivitás (2023 március)</h3>
+          <div class="chart-wrapper">
+            <canvas id="travelStatsChart"></canvas>
+          </div>
+          <div class="chart-legend">
+            <div class="legend-item">
+              <span
+                class="legend-color"
+                style="background-color: #6366f1"
+              ></span>
+              <span>Kulturális</span>
+            </div>
+            <div class="legend-item">
+              <span
+                class="legend-color"
+                style="background-color: #10b981"
+              ></span>
+              <span>Kikapcsolódás</span>
+            </div>
+            <div class="legend-item">
+              <span
+                class="legend-color"
+                style="background-color: #f59e0b"
+              ></span>
+              <span>Üzleti</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- AI Travel Assistant -->
+      <section class="ai-assistant">
+        <div class="assistant-header">
+          <h2><i class="fas fa-robot"></i> VoyagerAI asszisztens</h2>
+          <div class="ai-status">
+            <span class="status-dot online"></span>
+            <span>Elérhető</span>
+          </div>
+        </div>
+
+        <div class="assistant-messages">
+          <div class="message ai-message">
+            <div class="message-avatar">
+              <i class="fas fa-robot"></i>
+            </div>
+            <div class="message-content">
+              <p>
+                Szia Gergő! Miben segíthetek ma? Kérdezz bátran utazással
+                kapcsolatban, vagy kérj személyre szabott ajánlatot!
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="assistant-input">
+          <input
+            type="text"
+            placeholder="Kérdezd az AI asszisztenst..."
+            aria-label="Kérdés az AI asszisztensnek"
+          />
+          <button class="btn primary">
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
+
+        <div class="quick-questions">
+          <button class="quick-question-btn">
+            Mutasd a kedvezményes ajánlatokat
+          </button>
+          <button class="quick-question-btn">
+            Milyen utazás illik hozzám?
+          </button>
+          <button class="quick-question-btn">
+            Segíts választani nyaralási célpontot
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <!-- Navigation -->
+    <nav class="bottom-nav">
+      <a href="#" class="nav-item active" aria-label="Kezdőlap">
+        <i class="fas fa-home"></i>
+        <span>Kezdőlap</span>
+      </a>
+      <a href="#" class="nav-item" aria-label="Keresés">
+        <i class="fas fa-search"></i>
+        <span>Keresés</span>
+      </a>
+      <a href="#" class="nav-item" aria-label="Kedvencek">
+        <i class="fas fa-heart"></i>
+        <span>Kedvencek</span>
+      </a>
+      <a href="#" class="nav-item" aria-label="Profil">
+        <i class="fas fa-user"></i>
+        <span>Profil</span>
+      </a>
+    </nav>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@animxyz/core"></script>
+    <script src="szallas.js"></script>
+  </body>
+</html>
